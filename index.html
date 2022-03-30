@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/86c060d6eb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <div class="card">
+                <div class="horizontal">
+                    <img class="icon" src="images/icon.jpg" alt="">
+                    <div class="title">sten#7163</div>
+                </div>
+                <div class="medium">
+                    <div class="fa-field">
+                        <i class="fab fa-discord"></i><a href="https://discord.com/users/537666863501541396">Discord</a>
+                        <i class="fab fa-github"></i><a href="https://github.com/ghostkiller967">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <abbr title="About Me">
+                    <h2>About Me</h2>
+                </abbr>
+                <div id="aboutme"></div>
+                <abbr title="Coding">
+                    <h2>Coding</h2>
+                </abbr>
+                <div id="coding"></div>
+                <abbr title="History">
+                    <h2>History</h2>
+                </abbr>
+                <div id="history"></div>
+
+                <script>
+                </script>
+            </div>
+        </div>
+        <div>
+            <div class="center">
+                <div class="title">
+                    Projects
+                </div>
+                <div class="medium">
+                    These are the projects I've released.
+                </div>
+                <div>
+                    <div class="projects" id="projects"></div>
+                    <script>
+                        var xmlhttp = new XMLHttpRequest();
+                        var url = "https://api.github.com/users/ghostkiller967/repos";
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var arr = JSON.parse(this.responseText);
+                                var out = "";
+                                var i;
+                                for (i = 0; i < arr.length; i++) {
+                                    if (i <= 5) {
+                                        out += '<div class="project"><div class="medium">' + arr[i].name + '</div><p><i class="fas fa-terminal"></i> ' + arr[i].description + '</p><div class="fa-field"><i class="fas fa-hammer"></i><div>' + arr[i].language + '</div></div><div class="fa-field"><i class="fab fa-github"></i><a href="' + arr[i].html_url + '">Repository</a></div></div>';
+                                    }
+                                }
+                                document.getElementById("projects").innerHTML = out;
+                            }
+                        };
+                        xmlhttp.open("GET", url, true);
+                        xmlhttp.send();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

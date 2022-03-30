@@ -40,8 +40,26 @@
                     <h2>History</h2>
                 </abbr>
                 <div id="history"></div>
-
                 <script>
+                    const aboutme = document.getElementById("aboutme");
+                    const coding = document.getElementById("coding");
+                    const history = document.getElementById("history");
+
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "https://api.github.com/repos/ghostkiller967/Personal-Website/contents/info";
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var arr = JSON.parse(this.responseText);
+                            var out = "";
+                            var i;
+                            aboutme.innerHTML = arr[0].content;
+                            coding.innerHTML = arr[1].content;
+                            history.innerHTML = arr[2].content;
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                    aboutme.innerHTML = "";
                 </script>
             </div>
         </div>
@@ -56,6 +74,8 @@
                 <div>
                     <div class="projects" id="projects"></div>
                     <script>
+                        const projects = document.getElementById("projects");
+
                         var xmlhttp = new XMLHttpRequest();
                         var url = "https://api.github.com/users/ghostkiller967/repos";
                         xmlhttp.onreadystatechange = function() {
@@ -68,7 +88,7 @@
                                         out += '<div class="project"><div class="medium">' + arr[i].name + '</div><p><i class="fas fa-terminal"></i> ' + arr[i].description + '</p><div class="fa-field"><i class="fas fa-hammer"></i><div>' + arr[i].language + '</div></div><div class="fa-field"><i class="fab fa-github"></i><a href="' + arr[i].html_url + '">Repository</a></div></div>';
                                     }
                                 }
-                                document.getElementById("projects").innerHTML = out;
+                                projects.innerHTML = out;
                             }
                         };
                         xmlhttp.open("GET", url, true);

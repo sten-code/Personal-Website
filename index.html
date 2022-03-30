@@ -50,16 +50,24 @@
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var arr = JSON.parse(this.responseText);
-                            var out = "";
-                            var i;
-                            aboutme.innerHTML = arr[0].content;
-                            coding.innerHTML = arr[1].content;
-                            history.innerHTML = arr[2].content;
+                            var contents = [];
+                            for (var i = 0; i < arr.length; i++) {
+                                var xmlhttp = new XMLHttpRequest();
+                                xmlhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        contents.push(this.responseText);
+                                        aboutme.innerHTML = contents[0];
+                                        coding.innerHTML = contents[1];
+                                        history.innerHTML = contents[2];
+                                    }
+                                };
+                                xmlhttp.open("GET", arr[i].download_url, true);
+                                xmlhttp.send();
+                            }
                         }
                     };
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
-                    aboutme.innerHTML = "";
                 </script>
             </div>
         </div>

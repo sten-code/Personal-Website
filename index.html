@@ -38,6 +38,7 @@
                         if (this.readyState == 4 && this.status == 200) {
                             var content = this.responseText;
                             page.innerHTML = content;
+                            console.log(content);
                         }
                     };
                     xmlhttp.open("GET", url, true);

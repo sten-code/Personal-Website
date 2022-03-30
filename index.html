@@ -28,42 +28,16 @@
                 </div>
             </div>
             <div>
-                <abbr title="About Me">
-                    <h2>About Me</h2>
-                </abbr>
-                <div id="aboutme"></div>
-                <abbr title="Coding">
-                    <h2>Coding</h2>
-                </abbr>
-                <div id="coding"></div>
-                <abbr title="History">
-                    <h2>History</h2>
-                </abbr>
-                <div id="history"></div>
+                <div id="page"></div>
                 <script>
-                    const aboutme = document.getElementById("aboutme");
-                    const coding = document.getElementById("coding");
-                    const history = document.getElementById("history");
+                    const page = document.getElementById("page");
 
                     var xmlhttp = new XMLHttpRequest();
-                    var url = "https://api.github.com/repos/ghostkiller967/Personal-Website/contents/info";
+                    var url = "https://raw.githubusercontent.com/ghostkiller967/Personal-Website/main/info/page.html";
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            var arr = JSON.parse(this.responseText);
-                            var contents = [];
-                            for (var i = 0; i < arr.length; i++) {
-                                var xmlhttp = new XMLHttpRequest();
-                                xmlhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                        contents.push(this.responseText);
-                                        aboutme.innerHTML = contents[0];
-                                        coding.innerHTML = contents[1];
-                                        history.innerHTML = contents[2];
-                                    }
-                                };
-                                xmlhttp.open("GET", arr[i].download_url, true);
-                                xmlhttp.send();
-                            }
+                            var content = this.responseText;
+                            page.innerHTML = content;
                         }
                     };
                     xmlhttp.open("GET", url, true);

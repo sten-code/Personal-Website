@@ -30,6 +30,8 @@ body {
     background-color: #AAA492;
     border-radius: 15px;
     padding: 20px 20px;
+    min-width: 290px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
 }
@@ -41,9 +43,8 @@ body {
 }
 
 .title {
-    padding: 15px;
     font-size: 35px;
-    font-weight: bold;
+    padding: 0px 15px;
 }
 
 .medium {
@@ -51,16 +52,35 @@ body {
     font-size: 20px;
 }
 
+.small {
+    padding: 0px 15px;
+}
+
+.top {
+    padding: 0px 15px;
+    height: 10px;
+}
+
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 400px;
 }
 
 .icon {
     border-radius: 30px;
     width: 100px;
     height: 100px;
+}
+
+.image {
+    padding-right: 10px;
+    filter: invert(13%) sepia(5%) saturate(4675%) hue-rotate(152deg) brightness(93%) contrast(84%);
+}
+
+.spacing {
+    padding-right: 10px;
 }
 
 .projects {

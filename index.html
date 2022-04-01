@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/86c060d6eb.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,17 +17,46 @@
             <div class="card">
                 <div class="horizontal">
                     <img class="icon" src="images/icon.jpg" alt="">
-                    <div class="title">sten#7163</div>
+                    <div>
+                        <h2 class="top">Sten Daneel</h2>
+                        <p class="small">Software Developer</p>
+                    </div>
                 </div>
                 <div class="medium">
-                    <div class="fa-field">
-                        <i class="fab fa-discord"></i><a href="https://discord.com/users/537666863501541396">Discord</a>
-                        <i class="fab fa-github"></i><a href="https://github.com/ghostkiller967">GitHub</a>
+                    <div class="horizontal">
+                        <img class="image" src="images/DiscordLogo.svg" width="26">
+                        <a class="spacing" href="https://discord.com/users/537666863501541396">Discord</a>
+                        <img class="image" src="images/GithubLogo.svg" width="24">
+                        <a class="spacing" href="https://github.com/ghostkiller967">GitHub</a>
                     </div>
                 </div>
             </div>
             <div>
-                <div id="page"></div>
+                <div id="page">
+                    <abbr title="About Me">
+                        <h2>About Me</h2>
+                    </abbr>
+                    <div>I'm 16 years old, I started coding when I was about 8 years old with Scratch. When I went to middle school I also started to learn a lot of other languages</div>
+                    <div>like C#, VBA, Java, Python, JavaScript, Html, Batch and some other ones. I mainly did C# with the .net framework to create applications,</div>
+                    <div>not long after I also started to learn Java because I wanted to create mods and hacked clients for anarchy servers in Minecraft.</div>
+                    <div>I also started to learn Python because I wanted to create discord bot where I could look at data from Hypixel Skyblock.</div>
+                    <div>Not long after I started with JavaScript/Node.js to make it interact with Scratch through cloud variables.</div>
+                    <abbr title="Coding">
+                        <h2>Coding</h2>
+                    </abbr>
+                    <div>
+                        <div>Languages I'm good at</div>
+                        <div class="horizontal">
+                            <img class="image" src="images/CodeLogo.svg" width="21">
+                            <div>C#, Python, Java, Scratch, Batch</div>
+                        </div>
+                        <div>Languages I can get around with</div>
+                        <div class="horizontal">
+                            <img class="image" src="images/CodeLogo.svg" width="21">
+                            <div>JavaScript, Visual Basic</div>
+                        </div>
+                    </div>
+                </div>
                 <script>
                     const page = document.getElementById("page");
 
@@ -38,7 +66,6 @@
                         if (this.readyState == 4 && this.status == 200) {
                             var content = this.responseText;
                             page.innerHTML = content;
-                            console.log(content);
                         }
                     };
                     xmlhttp.open("GET", url, true);
@@ -48,12 +75,8 @@
         </div>
         <div>
             <div class="center">
-                <div class="title">
-                    Projects
-                </div>
-                <div class="medium">
-                    These are the projects I've released.
-                </div>
+                <h1>Projects</h1>
+                <div>These are the projects I've released.</div>
                 <div>
                     <div class="projects" id="projects"></div>
                     <script>
@@ -67,8 +90,23 @@
                                 var out = "";
                                 var i;
                                 for (i = 0; i < arr.length; i++) {
-                                    if (i <= 5) {
-                                        out += '<div class="project"><div class="medium">' + arr[i].name + '</div><p><i class="fas fa-terminal"></i> ' + arr[i].description + '</p><div class="fa-field"><i class="fas fa-hammer"></i><div>' + arr[i].language + '</div></div><div class="fa-field"><i class="fab fa-github"></i><a href="' + arr[i].html_url + '">Repository</a></div></div>';
+                                    if (i <= 4) {
+                                        out += `
+                                        <div class="project">
+                                            <div class="medium">` + arr[i].name + `</div>`;
+                                        if (arr[i].description != null) {
+                                            out += `<p>` + arr[i].description + `</p>`;
+                                        }
+                                        out += `
+                                            <div class="horizontal">
+                                                <img class="image" src="images/CodeLogo.svg" width="21">
+                                                <div>` + arr[i].language + `</div>
+                                            </div>
+                                            <div class="horizontal">
+                                                <img class="image" src="images/GithubLogo.svg" width="21">
+                                                <a href="` + arr[i].html_url + `">Repository</a>
+                                            </div>
+                                        </div>`;
                                     }
                                 }
                                 projects.innerHTML = out;

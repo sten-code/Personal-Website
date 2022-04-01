@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <div>
+        <div class="contain">
             <div class="card">
                 <div class="horizontal">
                     <img class="icon" src="images/icon.jpg" alt="">
@@ -75,10 +75,10 @@
                 </script>
             </div>
         </div>
-        <div>
+        <div class="contain">
             <div class="center">
                 <h1>Projects</h1>
-                <div>These are the projects I've released.</div>
+                <div class="align-center">These are the projects I've released.</div>
                 <div>
                     <div class="projects" id="projects"></div>
                     <script>
@@ -95,7 +95,7 @@
                                     if (i <= 4) {
                                         out += `
                                         <div class="project">
-                                            <div class="medium">` + arr[i].name + `</div>`;
+                                            <div class="big">` + arr[i].name + `</div>`;
                                         if (arr[i].description != null) {
                                             out += `<p>` + arr[i].description + `</p>`;
                                         }

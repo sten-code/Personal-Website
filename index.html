@@ -33,10 +33,12 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div id="page"></div>
-                <script>
-                    const page = document.getElementById("page");
+            <a onclick="set_language('en')">English</a>
+            <a onclick="set_language('nl')">Dutch</a>
+            <div id="page"></div>
+            <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+            <script>
+                const page = document.getElementById("page");
 
                     var xmlhttp = new XMLHttpRequest();
                     var url = "https://raw.githubusercontent.com/ghostkiller967/Personal-Website/main/info/page.html";
@@ -45,37 +47,42 @@
                             var content = this.responseText;
                             page.innerHTML = content;
                         }
-                    };
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                </script>
-            </div>
+                        projects.innerHTML = out;
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+
+                function set_language(lang) {
+                    window.location.href = "?lang=" + lang;
+
+                }
+            </script>
         </div>
         <div class="contain">
             <div class="center">
                 <h1>Projects</h1>
                 <div class="align-center">These are the projects I've released.</div>
-                <div>
-                    <div class="projects" id="projects"></div>
-                    <script>
-                        const projects = document.getElementById("projects");
+                <div class="projects" id="projects"></div>
+                <script>
+                    const projects = document.getElementById("projects");
 
-                        var xmlhttp = new XMLHttpRequest();
-                        var url = "https://api.github.com/users/ghostkiller967/repos";
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                var arr = JSON.parse(this.responseText);
-                                var out = "";
-                                var i;
-                                for (i = 0; i < arr.length; i++) {
-                                    if (i <= 4) {
-                                        out += `
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "https://api.github.com/users/ghostkiller967/repos";
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var arr = JSON.parse(this.responseText);
+                            var out = "";
+                            var i;
+                            for (i = 0; i < arr.length; i++) {
+                                if (i <= 4) {
+                                    out += `
                                         <div class="project">
                                             <div class="big">` + arr[i].name + `</div>`;
-                                        if (arr[i].description != null) {
-                                            out += `<p>` + arr[i].description + `</p>`;
-                                        }
-                                        out += `
+                                    if (arr[i].description != null) {
+                                        out += `<p>` + arr[i].description + `</p>`;
+                                    }
+                                    out += `
                                             <div class="horizontal">
                                                 <img class="image" src="images/CodeLogo.svg" width="21">
                                                 <div>` + arr[i].language + `</div>
@@ -85,15 +92,14 @@
                                                 <a href="` + arr[i].html_url + `">Repository</a>
                                             </div>
                                         </div>`;
-                                    }
                                 }
-                                projects.innerHTML = out;
                             }
-                        };
-                        xmlhttp.open("GET", url, true);
-                        xmlhttp.send();
-                    </script>
-                </div>
+                            projects.innerHTML = out;
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                </script>
             </div>
         </div>
     </div>

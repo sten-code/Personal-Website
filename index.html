@@ -40,29 +40,50 @@
             <script>
                 const page = document.getElementById("page");
 
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = "https://raw.githubusercontent.com/ghostkiller967/Personal-Website/main/info/page.html";
-                    xmlhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            var content = this.responseText;
-                            page.innerHTML = content;
-                        }
-                        projects.innerHTML = out;
+                var xmlhttp = new XMLHttpRequest();
+                var url = "https://raw.githubusercontent.com/ghostkiller967/Personal-Website/main/info/page.html";
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var content = this.responseText;
+                        page.innerHTML = content;
                     }
                 };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
 
+                var languages = {};
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        languages = JSON.parse(this.responseText);
+                    }
+                };
+                xmlhttp.open("GET", "https://raw.githubusercontent.com/ghostkiller967/Personal-Website/main/lang.json", true);
+                xmlhttp.send();
+
                 function set_language(lang) {
                     window.location.href = "?lang=" + lang;
-
                 }
             </script>
         </div>
         <div class="contain">
             <div class="center">
-                <h1>Projects</h1>
-                <div class="align-center">These are the projects I've released.</div>
+                <h1 class="translate" id="projects_text">Projects</h1>
+                <div class="translate align-center" id="projects_description_text">These are the projects I've released.</div>
+                <script>
+                    var translating = document.getElementsByClassName("translate");
+                    var parameters = {}
+                    var deconstructed = window.location.search.substr(1).split("?");
+                    for (var i = 0; i < deconstructed.length; i++) {
+                        var parameter = deconstructed[i].split("=");
+                        parameters[parameter[0]] = parameter[1];
+                    }
+
+                    for (var i = 0; i < translating.length; i++) {
+                        translating[i].innerHTML = languages[parameters.lang][translating[i].id];
+                    }
+                </script>
                 <div class="projects" id="projects"></div>
                 <script>
                     const projects = document.getElementById("projects");

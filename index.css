@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "JetBrains Mono", monospace;
+}
+
+body {
+    background-image: url("images/background2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.horizontal > * {
+    margin-right: 10px;
+}
+
+.wrapper {
+    margin: 25px;
+}
+
+section {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+hr {
+    border-top: 2px solid;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.head {
+    background-color: rgba(220, 222, 222);
+    height: 175px;
+    padding-left: 70px;
+    padding-top: 125px;
+}
+
+.container {
+    margin-left: 40%;
+    width: 50%;
+    min-width: 500px;
+    background-color: rgba(235, 235, 235, 1);
+}
+
+.checked {
+    color: orange;
+}
+
+.image {
+    padding-right: 10px;
+    filter: invert(13%) sepia(5%) saturate(4675%) hue-rotate(152deg) brightness(93%) contrast(84%);
+}
+
+.project {
+    border: rgba(150, 151, 151) solid 1px;
+    background-color: rgba(220, 222, 222);
+    padding: 30px;
+}
+
+.projects {
+    padding: 10px 0px 25px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.big {
+    font-weight: bold;
+    font-size: 20px;
+}

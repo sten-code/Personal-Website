@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sten</title>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="head">
+                <h1>Sten Daneel</h1>
+                <p>Software Developer</p>
+            </div>
+            <div class="wrapper">
+                <h2>Curriculum Vitae</h2>
+                <hr class="dashed">
+                <h2>About Me</h2>
+                <section>
+                    <div class="horizontal">
+                        <p id="aboutme">Hello, I'm Sten and I'm {} years old. I started coding at 8 years old when my parents put me on a course on Scratch which was basically an introduction to coding, ever since that day I've been coding. I'm entirely self taught and love to perfect my results. I love coding so much because of the feeling you get when you've finished a project and seeing the result when it all works. I always want everything to be pixel-perfect in order for me to be satified with my work.</p>
+                        <script>
+                            document.getElementById("aboutme").innerHTML = document.getElementById("aboutme").innerHTML.replace("{}", Math.abs(new Date(Date.now() - new Date(1134695400000)).getUTCFullYear() - 1970));
+                        </script>
+                    </div>
+                </section>
+                <h2>Experience</h2>
+                <section>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>C# Desktop</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>Python</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>JavaScript</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>TypeScript</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>Java</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="horizontal">
+                        <img class="image" src="images/CodeLogo.svg" width="24">
+                        <p>HTML/CSS</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </section>
+                <h2>Education</h2>
+                <section>
+                    <p>Havo - 2018/now</p>
+                </section>
+                <h2>Projects</h2>
+                <div class="projects" id="projects"></div>
+                <script>
+                    const projects = document.getElementById("projects");
+
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "https://api.github.com/users/sten-code/repos";
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var arr = JSON.parse(this.responseText);
+                            var out = "";
+                            var i;
+                            for (i = 0; i < arr.length; i++) {
+                                out += `
+                                    <div class="project">
+                                        <div class="big">` + arr[i].name + `</div>`;
+                                if (arr[i].description != null) {
+                                    out += `<p>` + arr[i].description + `</p>`;
+                                }
+                                out += `
+                                        <div class="horizontal">
+                                            <img class="image" src="images/CodeLogo.svg" width="21">
+                                            <div>` + arr[i].language + `</div>
+                                        </div>
+                                        <div class="horizontal">
+                                            <img class="image" src="images/GithubLogo.svg" width="21">
+                                            <a href="` + arr[i].html_url + `">Repository</a>
+                                        </div>
+                                    </div>`;
+                            }
+                            projects.innerHTML = out;
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

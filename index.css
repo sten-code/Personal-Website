@@ -8,10 +8,10 @@ html {
 }
 
 body {
-    background-image: url("images/background2.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    /* background-image: url("images/background2.jpg"); */
+    /* background-size: cover; */
+    /* background-attachment: fixed; */
+    /* background-position: center; */
 }
 
 p {
@@ -28,7 +28,7 @@ h1 {
     align-items: center;
 }
 
-.horizontal > * {
+.horizontal>* {
     margin-right: 10px;
 }
 
@@ -55,8 +55,8 @@ hr {
 }
 
 .container {
-    margin-left: 40%;
-    width: 50%;
+    /* margin-left: 40%; */
+    /* width: 50%; */
     min-width: 500px;
     background-color: rgba(235, 235, 235, 1);
 }
